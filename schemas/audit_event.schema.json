@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sowl.tech/schemas/audit_event.schema.json",
+  "title": "AuditEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "timestamp",
+    "actor",
+    "target",
+    "action",
+    "risk_class",
+    "approval_basis",
+    "reason",
+    "rollback_available",
+    "status"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "actor": { "type": "string" },
+    "target": { "type": "string" },
+    "action": { "type": "string" },
+    "risk_class": { "type": "string", "enum": ["R0", "R1", "R2", "R3", "R4"] },
+    "approval_basis": { "type": "string" },
+    "reason": { "type": "string" },
+    "rollback_available": { "type": "boolean" },
+    "status": { "type": "string", "enum": ["proposed", "blocked", "success", "failed"] },
+    "notes": { "type": "string" }
+  }
+}
