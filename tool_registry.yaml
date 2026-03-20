@@ -1,0 +1,60 @@
+version: 1
+owner: sowltech
+registry_name: omni-core-tool-registry
+risk_classes:
+  R0: read-only inspection
+  R1: reversible local write
+  R2: environment or workflow mutation
+  R3: secret, network, or external side effects
+  R4: destructive or irreversible action
+
+tools:
+  - name: inspect_repo
+    purpose: inspect repository structure and contents
+    risk_class: R0
+    scopes: [read]
+    approval_required: false
+    logging_required: true
+    rollback_possible: false
+    inputs: [path, query]
+    outputs: [file_list, snippets, summaries]
+
+  - name: edit_local_file
+    purpose: make a reversible edit to a local file
+    risk_class: R1
+    scopes: [write]
+    approval_required: true
+    logging_required: true
+    rollback_possible: true
+    inputs: [target_file, patch]
+    outputs: [diff, status]
+
+  - name: run_workflow
+    purpose: execute a declared local workflow
+    risk_class: R2
+    scopes: [workflow, system]
+    approval_required: true
+    logging_required: true
+    rollback_possible: false
+    inputs: [workflow_name, command]
+    outputs: [status, logs]
+
+  - name: access_secret
+    purpose: retrieve or use a secret in an approved flow
+    risk_class: R3
+    scopes: [secrets]
+    approval_required: true
+    logging_required: true
+    rollback_possible: false
+    inputs: [secret_name, purpose]
+    outputs: [status]
+
+  - name: destructive_delete
+    purpose: remove a file, artifact, or resource
+    risk_class: R4
+    scopes: [delete, write]
+    approval_required: true
+    logging_required: true
+    rollback_possible: false
+    inputs: [target]
+    outputs: [status]
