@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sowl.tech/schemas/approval_gate.schema.json",
+  "title": "ApprovalGate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "gate_id",
+    "target",
+    "action",
+    "risk_class",
+    "approval_required",
+    "approval_basis",
+    "status"
+  ],
+  "properties": {
+    "gate_id": { "type": "string" },
+    "target": { "type": "string" },
+    "action": { "type": "string" },
+    "risk_class": { "type": "string", "enum": ["R0", "R1", "R2", "R3", "R4"] },
+    "approval_required": { "type": "boolean" },
+    "approval_basis": { "type": "string" },
+    "status": { "type": "string", "enum": ["pending", "approved", "rejected", "not_required"] },
+    "requested_by": { "type": "string" },
+    "approved_by": { "type": "string" },
+    "reason": { "type": "string" }
+  }
+}
