@@ -28,3 +28,16 @@ OMNI-CORE is built around:
 2. Add role-specific prompts for your named agents
 3. Extend `schemas/` with workflow, refusal, and freeze event schemas
 4. Wire these rules into your actual runtime and repo workflows
+
+## Frontend prototype
+
+A no-build interactive React command interface for the SOWL TECH Founder/Builder Operating System is available in `frontend/`.
+
+Open `frontend/index.html` in a browser to use:
+- welcome hub
+- 6-step diagnostic with inferred unstable layer
+- mode protocol output
+- drift reset checklist
+- weekly scorecard with live weakest/strongest scoring
+- 30-day reset plan
+- pattern library and mode reference
