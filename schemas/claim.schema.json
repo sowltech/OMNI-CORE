@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sowl.tech/schemas/claim.schema.json",
+  "title": "Claim",
+  "description": "A governed knowledge claim with attributed source, confidence level, and provenance. Used in Layer 1 (Core Engine) and Layer 2 (Sovereign Knowledge Mode).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claim_id",
+    "content",
+    "source_type",
+    "source_ref",
+    "confidence",
+    "status",
+    "entered_by",
+    "entry_date"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "description": "Unique identifier for this claim"
+    },
+    "content": {
+      "type": "string",
+      "description": "The substance of the claim in plain language"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["primary", "secondary", "oral", "derived", "institutional", "cultural"],
+      "description": "The category of source from which this claim originates"
+    },
+    "source_ref": {
+      "type": "string",
+      "description": "A citation, URL, document reference, or attribution for the claim"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["established", "probable", "provisional", "contested", "speculative", "symbolic"],
+      "description": "The epistemic confidence level of this claim"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "contested", "superseded", "archived", "frozen"],
+      "description": "The current lifecycle status of this claim"
+    },
+    "entered_by": {
+      "type": "string",
+      "description": "Actor or agent that created this claim entry"
+    },
+    "entry_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when this claim was entered"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Optional knowledge domain or category for this claim"
+    },
+    "knowledge_system": {
+      "type": "string",
+      "description": "Optional: the cultural or epistemic tradition this claim belongs to (e.g., 'Ifá tradition', 'Western empirical science')"
+    },
+    "related_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of related or linked claims"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes or context about this claim"
+    }
+  }
+}

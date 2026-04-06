@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sowl.tech/schemas/knowledge_entry.schema.json",
+  "title": "KnowledgeEntry",
+  "description": "A structured sovereign knowledge record. Captures knowledge from any tradition with full provenance, confidence, and contestation linkage. Core artifact of Layer 2 (Sovereign Knowledge Mode).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entry_id",
+    "title",
+    "summary",
+    "knowledge_system",
+    "source_type",
+    "source_ref",
+    "confidence",
+    "status",
+    "entered_by",
+    "entry_date"
+  ],
+  "properties": {
+    "entry_id": {
+      "type": "string",
+      "description": "Unique identifier for this knowledge entry"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short descriptive title for this knowledge entry"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Plain language summary of what this entry captures"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full content of the knowledge entry"
+    },
+    "knowledge_system": {
+      "type": "string",
+      "description": "The epistemic or cultural tradition this entry belongs to (e.g., 'Ifá tradition', 'Western empirical science', 'Nsibidi script system', 'Oral history — Yoruba')"
+    },
+    "domain": {
+      "type": "string",
+      "description": "The subject domain (e.g., 'cosmology', 'governance', 'medicine', 'mathematics')"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["primary", "secondary", "oral", "derived", "institutional", "cultural"],
+      "description": "The category of source"
+    },
+    "source_ref": {
+      "type": "string",
+      "description": "Citation, reference, or attribution for this entry"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["established", "probable", "provisional", "contested", "speculative", "symbolic"],
+      "description": "Epistemic confidence level of this entry"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "contested", "superseded", "archived", "frozen"],
+      "description": "Current lifecycle status of this entry"
+    },
+    "entered_by": {
+      "type": "string",
+      "description": "Actor or agent who created this entry"
+    },
+    "entry_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when this entry was created"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the most recent formal review"
+    },
+    "reviewed_by": {
+      "type": "string",
+      "description": "Actor who last reviewed this entry"
+    },
+    "linked_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of claim records derived from or related to this entry"
+    },
+    "linked_contestations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of contestation records against this entry or its linked claims"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional tags for search and categorisation"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes or additional context"
+    }
+  }
+}
