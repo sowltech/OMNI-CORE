@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sowl.tech/schemas/contestation.schema.json",
+  "title": "Contestation",
+  "description": "A formal record of a dispute against an existing claim. Contestations are preserved, never silenced. Used in Layer 2 (Sovereign Knowledge Mode) and Layer 3 (Dispute Resolution).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contestation_id",
+    "target_claim_id",
+    "contested_by",
+    "contestation_date",
+    "grounds",
+    "status"
+  ],
+  "properties": {
+    "contestation_id": {
+      "type": "string",
+      "description": "Unique identifier for this contestation record"
+    },
+    "target_claim_id": {
+      "type": "string",
+      "description": "ID of the claim being contested"
+    },
+    "contested_by": {
+      "type": "string",
+      "description": "Actor or agent who raised the contestation"
+    },
+    "contestation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the contestation was filed"
+    },
+    "grounds": {
+      "type": "string",
+      "description": "The reason or basis for contesting the claim"
+    },
+    "counter_evidence": {
+      "type": "string",
+      "description": "Optional: alternative evidence or source supporting the contestation"
+    },
+    "counter_confidence": {
+      "type": "string",
+      "enum": ["established", "probable", "provisional", "contested", "speculative", "symbolic"],
+      "description": "Confidence level of the counter-position"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "under_review", "resolved", "withdrawn", "escalated"],
+      "description": "Current lifecycle status of this contestation"
+    },
+    "resolution_id": {
+      "type": "string",
+      "description": "ID of the arbitration or audit event that resolved this contestation, if applicable"
+    },
+    "resolution_summary": {
+      "type": "string",
+      "description": "Brief description of how this contestation was resolved, if applicable"
+    },
+    "resolved_by": {
+      "type": "string",
+      "description": "Actor or agent who closed this contestation"
+    },
+    "resolved_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the contestation was resolved"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes or context"
+    }
+  }
+}

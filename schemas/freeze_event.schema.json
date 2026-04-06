@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sowl.tech/schemas/freeze_event.schema.json",
+  "title": "FreezeEvent",
+  "description": "A governance record that marks an artifact, schema, or workflow as frozen. A frozen artifact may not be mutated without a formal thaw event. Core mechanism of Layer 1 (IAKE-1) stability control.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "freeze_id",
+    "target",
+    "target_type",
+    "frozen_by",
+    "freeze_date",
+    "reason",
+    "status"
+  ],
+  "properties": {
+    "freeze_id": {
+      "type": "string",
+      "description": "Unique identifier for this freeze event"
+    },
+    "target": {
+      "type": "string",
+      "description": "The artifact, file, schema, or workflow being frozen"
+    },
+    "target_type": {
+      "type": "string",
+      "enum": ["schema", "workflow", "constitution", "prompt", "tool", "knowledge_entry", "claim", "product_spec"],
+      "description": "The type of artifact being frozen"
+    },
+    "frozen_by": {
+      "type": "string",
+      "description": "Actor or agent who issued the freeze"
+    },
+    "freeze_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the freeze was applied"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why this artifact is being frozen (e.g., 'stable for pilot use', 'passed governance review', 'v1 release candidate')"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "thawed", "superseded"],
+      "description": "Current status of this freeze. 'active' means the freeze is in force."
+    },
+    "thaw_event_id": {
+      "type": "string",
+      "description": "ID of the audit event or approval gate that thawed this freeze, if applicable"
+    },
+    "thawed_by": {
+      "type": "string",
+      "description": "Actor who thawed this freeze, if applicable"
+    },
+    "thaw_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the freeze was lifted, if applicable"
+    },
+    "thaw_reason": {
+      "type": "string",
+      "description": "Documented justification for lifting the freeze"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes or context about this freeze event"
+    }
+  }
+}

@@ -58,3 +58,83 @@ tools:
     rollback_possible: false
     inputs: [target]
     outputs: [status]
+
+  - name: submit_claim
+    purpose: create a new governed knowledge claim with source and confidence level
+    risk_class: R1
+    scopes: [write]
+    approval_required: true
+    logging_required: true
+    rollback_possible: true
+    inputs: [content, source_type, source_ref, confidence, entered_by, domain, knowledge_system]
+    outputs: [claim_id, audit_event_id, status]
+
+  - name: read_claim
+    purpose: retrieve a claim record by ID or query
+    risk_class: R0
+    scopes: [read]
+    approval_required: false
+    logging_required: true
+    rollback_possible: false
+    inputs: [claim_id, query]
+    outputs: [claim_record, status]
+
+  - name: update_claim_confidence
+    purpose: update the confidence level of an existing claim with documented reason
+    risk_class: R1
+    scopes: [write]
+    approval_required: true
+    logging_required: true
+    rollback_possible: true
+    inputs: [claim_id, new_confidence, reason, actor]
+    outputs: [claim_id, audit_event_id, status]
+
+  - name: submit_contestation
+    purpose: file a formal contestation against an existing claim
+    risk_class: R1
+    scopes: [write]
+    approval_required: true
+    logging_required: true
+    rollback_possible: true
+    inputs: [target_claim_id, contested_by, grounds, counter_evidence, counter_confidence]
+    outputs: [contestation_id, audit_event_id, status]
+
+  - name: resolve_contestation
+    purpose: close a contestation with a documented arbitration outcome
+    risk_class: R2
+    scopes: [write, workflow]
+    approval_required: true
+    logging_required: true
+    rollback_possible: false
+    inputs: [contestation_id, resolution_summary, resolved_by, upheld_claim_id, confidence]
+    outputs: [resolution_id, audit_event_id, status]
+
+  - name: submit_knowledge_entry
+    purpose: create a structured sovereign knowledge record with full provenance
+    risk_class: R1
+    scopes: [write]
+    approval_required: true
+    logging_required: true
+    rollback_possible: true
+    inputs: [title, summary, content, knowledge_system, source_type, source_ref, confidence, entered_by, domain]
+    outputs: [entry_id, audit_event_id, status]
+
+  - name: freeze_artifact
+    purpose: mark a schema, workflow, or artifact as frozen — no mutation without thaw
+    risk_class: R2
+    scopes: [write, workflow]
+    approval_required: true
+    logging_required: true
+    rollback_possible: false
+    inputs: [target, target_type, frozen_by, reason]
+    outputs: [freeze_id, audit_event_id, status]
+
+  - name: thaw_artifact
+    purpose: lift a freeze on a previously frozen artifact with documented justification
+    risk_class: R2
+    scopes: [write, workflow]
+    approval_required: true
+    logging_required: true
+    rollback_possible: false
+    inputs: [freeze_id, thawed_by, thaw_reason]
+    outputs: [freeze_id, audit_event_id, status]
