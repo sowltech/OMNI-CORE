@@ -14,6 +14,12 @@ This repository seeds the core constitutions, prompts, schemas, and tool registr
 - `schemas/` — machine-readable contracts for audit and approval events
 - `tool_registry.yaml` — declared tools, risk classes, and approval requirements
 
+## Related repos
+
+- **Implementation repo:** `sowltech/phoenix-mind-spine`
+- Use **OMNI-CORE** for doctrine, governance posture, constitutional rules, and architecture intent.
+- Use **phoenix-mind-spine** for implementation services, runtime boundaries, and governed execution flow.
+
 ## Core role of OMNI-CORE
 
 OMNI-CORE is the **doctrine and governance repository**.
